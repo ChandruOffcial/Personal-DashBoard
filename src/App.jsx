@@ -2,7 +2,9 @@ import { ThemeProvider, CssBaseline } from "@mui/material";
 import { ColorContext, useMode } from "./theme";
 import Topbar from "./features/global/Topbar";
 import SidebarComponent from "./features/global/Sidebar";
-import DataGridTable from "./components/DataGrid";
+import GaugeWithValue from "./components/Gauge";
+import DataGridTable from "./components/DataTable";
+import BarChart from "./components/Chart";
 
 function App() {
 	const [colorMode, theme] = useMode();
@@ -15,8 +17,9 @@ function App() {
 					<SidebarComponent />
 					<div className="content">
 						<Topbar />
-
 						<DataGridTable />
+						<GaugeWithValue />
+						<BarChart />
 					</div>
 				</div>
 			</ThemeProvider>

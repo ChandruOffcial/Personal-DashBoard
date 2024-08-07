@@ -24,7 +24,6 @@ const SidebarComponent = () => {
 				},
 			}}
 			bgcolor={colors.primary[400]}
-			overflow={"hidden"}
 		>
 			<Sidebar
 				collapsed={collapsed}

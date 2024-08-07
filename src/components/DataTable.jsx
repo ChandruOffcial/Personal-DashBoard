@@ -84,7 +84,7 @@ const DataGridTable = () => {
 			status: "delivered",
 		},
 	];
-
+	// Render Image
 	const renderImage = ({ row }) => {
 		const { customerImage, name } = row;
 		return (
@@ -94,11 +94,28 @@ const DataGridTable = () => {
 			</Box>
 		);
 	};
-
+	// Set Status
 	const setStatus = ({ row }) => {
 		const { status } = row;
 
-		return <Button style={{ backgroundColor: "green", borderRadius: "30px" }}>{status}</Button>;
+		const getStatusColor = (status) => {
+			switch (status) {
+				case "delivered":
+					return "green";
+				case "pending":
+					return "orange";
+				case "cancelled":
+					return "red";
+				case "shipped":
+					return "blue";
+				case "processing":
+					return "purple";
+				default:
+					return "grey";
+			}
+		};
+
+		return <Button style={{ backgroundColor: getStatusColor(status), borderRadius: "30px", color: "white", minWidth: "6rem" }}>{status}</Button>;
 	};
 
 	const columsDetails = [
@@ -134,29 +151,7 @@ const DataGridTable = () => {
 
 	return (
 		<Box>
-			<DataGrid
-				rows={customers}
-				columns={columsDetails}
-				disableColumnSorting
-				disableColumnMenu
-				disableColumnFilter
-				disableAutosize
-				// sx={{
-				// 	"& .MuiDataGrid-filler": {
-				// 		height: "0px !important",
-				// 		border: "0px solid !important",
-				// 	},
-				// 	"& MuiDataGrid-cellEmpty": {
-				// 		height: "0px !important",
-				// 		border: "0px solid !important",
-				// 	},
-				// }}
-				// sx={{
-				// 	"& .hideRightSeparator > .MuiDataGrid-columnSeparator": {
-				// 		display: "none",
-				// 	},
-				// }}
-			/>
+			<DataGrid rows={customers} columns={columsDetails} disableColumnSorting disableColumnMenu disableColumnFilter disableAutosize hideFooter />
 		</Box>
 	);
 };
